@@ -1,32 +1,26 @@
 #include "modeConsole.h"
 
-#include <iostream>
-#include <fstream>
 #include <filesystem>
+#include <fstream>
+#include <iostream>
 
 namespace fs = std::filesystem;
 
-// =======================
-//      CONSTRUCTEUR
-// =======================
-
+// Constructeur
 ModeConsole::ModeConsole(const std::string& fichierEntree, int iterations)
     : m_jeu(LecteurFichier::charger(fichierEntree)),
       m_fichierEntree(fichierEntree),
       m_dossierSortie(fichierEntree + "_out"),
       m_iterations(iterations)
 {
-    // Création du dossier de sortie s'il n'existe pas
+    // Creation du dossier de sortie s'il n'existe pas
     fs::create_directory(m_dossierSortie);
 }
 
-// =======================
-//     MÉTHODES PUBLIQUES
-// =======================
-
+// Methodes publiques
 void ModeConsole::executer()
 {
-    // Sauvegarde de l'état initial
+    // Sauvegarde de l'etat initial
     sauvegarder(0);
 
     // Simulation
@@ -44,10 +38,7 @@ void ModeConsole::executer()
               << m_dossierSortie << "\n";
 }
 
-// =======================
-//     MÉTHODES PRIVÉES
-// =======================
-
+// Methodes privees
 void ModeConsole::afficher(const Grille& grille)
 {
     for (int i = 0; i < grille.getnblignes(); ++i) {
@@ -75,7 +66,7 @@ void ModeConsole::sauvegarder(int iteration) const
     std::ofstream out(nomFichier);
 
     if (!out.is_open()) {
-        std::cerr << "Erreur : impossible d'écrire dans " << nomFichier << "\n";
+        std::cerr << "Erreur : impossible d'ecrire dans " << nomFichier << "\n";
         std::exit(1);
     }
 
@@ -98,10 +89,7 @@ void ModeConsole::sauvegarder(int iteration) const
     }
 }
 
-// =======================
-//  FONCTION UTILITAIRE
-// =======================
-
+// Fonction utilitaire
 void lancerModeConsole()
 {
     std::cout << "=== MODE CONSOLE ===\n";
@@ -111,7 +99,7 @@ void lancerModeConsole()
     std::cout << "Entrez le fichier d'entree : ";
     std::cin >> fichierEntree;
 
-    // Nombre d'itérations
+    // Nombre d'iterations
     int iterations;
     std::cout << "Nombre d'iterations : ";
     std::cin >> iterations;

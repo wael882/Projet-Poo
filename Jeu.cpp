@@ -1,4 +1,5 @@
 #include "Jeu.h"
+#include <utility>
 
 Jeu::Jeu(Grille grilleInitiale)
     : m_grille(std::move(grilleInitiale)) {}

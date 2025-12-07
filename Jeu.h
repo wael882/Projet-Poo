@@ -3,39 +3,23 @@
 
 #include "Grille.h"
 
-// Encapsule la logique du jeu : détient une grille et avance d'itérations.
-<<<<<<< HEAD
-class Jeu
-{
-private:
-    Grille m_grille;
-
-=======
+// Encapsule la logique du jeu : detient une grille et avance d'iterations.
 class Jeu {
->>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
 public:
     explicit Jeu(Grille grilleInitiale);
 
-    // Accès à la grille (lecture/écriture ou lecture seule).
-<<<<<<< HEAD
-    Grille &grille();
-    const Grille &grille() const;
-=======
+    // Acces a la grille (lecture/ecriture ou lecture seule).
     Grille& grille();
     const Grille& grille() const;
->>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
 
-    // Fait avancer le jeu d'une itération.
+    // Fait avancer le jeu d'une iteration.
     void tick();
 
-    // Fait avancer le jeu de 'iterations' itérations.
+    // Fait avancer le jeu de 'iterations' iterations.
     void run(int iterations);
-<<<<<<< HEAD
-=======
 
 private:
     Grille m_grille;
->>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
 };
 
 #endif
