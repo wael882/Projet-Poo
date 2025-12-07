@@ -18,7 +18,11 @@ ModeGraphique::ModeGraphique(const std::string& fichierEntree,
       m_window(),
       m_clock()
 {
+<<<<<<< HEAD
     // Calcule une taille de cellule pour remplir une fenetre fixe
+=======
+    // Calcule une taille de cellule pour remplir une fenêtre fixe
+>>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
     const int cols = m_jeu.grille().getnbcolonnes();
     const int rows = m_jeu.grille().getnblignes();
     if (cols > 0 && rows > 0) {
@@ -57,7 +61,11 @@ void ModeGraphique::gererEvenements()
 {
     sf::Event event;
     while (m_window.pollEvent(event)) {
+<<<<<<< HEAD
         // Fermeture de la fenetre
+=======
+        // Fermeture de la fenêtre
+>>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
         if (event.type == sf::Event::Closed) {
             m_window.close();
         }
@@ -71,14 +79,22 @@ void ModeGraphique::gererEvenements()
             if (event.key.code == sf::Keyboard::Space) {
                 m_pause = !m_pause;
             }
+<<<<<<< HEAD
             // Fleche haut -> plus rapide
+=======
+            // Flèche haut -> plus rapide
+>>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
             if (event.key.code == sf::Keyboard::Up) {
                 m_delay -= 0.05f;
                 if (m_delay < DELAY_MIN) {
                     m_delay = DELAY_MIN;
                 }
             }
+<<<<<<< HEAD
             // Fleche bas -> plus lent
+=======
+            // Flèche bas -> plus lent
+>>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
             if (event.key.code == sf::Keyboard::Down) {
                 m_delay += 0.05f;
             }
@@ -88,8 +104,13 @@ void ModeGraphique::gererEvenements()
 
 void ModeGraphique::mettreAJour()
 {
+<<<<<<< HEAD
     // Mise a jour de la grille selon delay, tant qu'on n'a pas depasse
     // le nombre d'iterations demandees
+=======
+    // Mise à jour de la grille selon delay, tant qu'on n'a pas dépassé
+    // le nombre d'itérations demandées
+>>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
     if (!m_pause
         && m_iterationCourante < m_iterationsMax
         && m_clock.getElapsedTime().asSeconds() >= m_delay)
@@ -104,7 +125,11 @@ void ModeGraphique::afficher(const Grille& grille)
 {
     m_window.clear(sf::Color::Black);
 
+<<<<<<< HEAD
     // Panneau d'info a droite
+=======
+    // Panneau d'info à droite
+>>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
     sf::RectangleShape infoPanel(
         sf::Vector2f(static_cast<float>(INFO_PANEL_WIDTH),
                      static_cast<float>(WINDOW_HEIGHT)));
@@ -116,6 +141,7 @@ void ModeGraphique::afficher(const Grille& grille)
         sf::Vector2f(static_cast<float>(m_cellSize),
                      static_cast<float>(m_cellSize)));
 
+<<<<<<< HEAD
     // Dessin des cellules + comptage en direct
     int nbVivantes = 0;
     int nbMortes   = 0;
@@ -130,6 +156,13 @@ void ModeGraphique::afficher(const Grille& grille)
                 ++nbMortes;
             }
 
+=======
+    // Dessin des cellules
+    for (int i = 0; i < grille.getnblignes(); ++i) {
+        for (int j = 0; j < grille.getnbcolonnes(); ++j) {
+
+            const auto type = grille.getCellule(i, j).typeEtat();
+>>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
             switch (type) {
                 case EtatType::Vivante:
                     cell.setFillColor(sf::Color::Green);
@@ -141,7 +174,11 @@ void ModeGraphique::afficher(const Grille& grille)
                     cell.setFillColor(sf::Color(0, 120, 215)); // bleu
                     break;
                 case EtatType::ObstacleMorte:
+<<<<<<< HEAD
                     cell.setFillColor(sf::Color(200, 70, 70)); // rouge attenue
+=======
+                    cell.setFillColor(sf::Color(200, 70, 70)); // rouge atténué
+>>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
                     break;
             }
 
@@ -174,6 +211,7 @@ void ModeGraphique::afficher(const Grille& grille)
         m_window.draw(line, 2, sf::Lines);
     }
 
+<<<<<<< HEAD
     // Overlay texte : iteration + stats vivantes/mortes
     if (m_font.getInfo().family != "") {
         m_overlayText.setString(
@@ -181,6 +219,13 @@ void ModeGraphique::afficher(const Grille& grille)
             " / " + std::to_string(m_iterationsMax) + "\n" +
             "Cellules vivantes : " + std::to_string(nbVivantes) + "\n" +
             "Cellules mortes   : " + std::to_string(nbMortes));
+=======
+    // Overlay texte : numéro d'itération, dans le panneau
+    if (m_font.getInfo().family != "") {
+        m_overlayText.setString(
+            "Iteration : " + std::to_string(m_iterationCourante) +
+            " / " + std::to_string(m_iterationsMax));
+>>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
         m_window.draw(m_overlayText);
     }
 
@@ -204,7 +249,11 @@ void ModeGraphique::initialiserOverlayTexte()
     }
 
     if (m_font.getInfo().family == "") {
+<<<<<<< HEAD
         std::cerr << "Avertissement : aucune police trouvee pour l'overlay.\n";
+=======
+        std::cerr << "Avertissement : aucune police trouvée pour l'overlay.\n";
+>>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
         return;
     }
 
@@ -225,12 +274,20 @@ void lancerModeGraphique()
 {
     std::cout << "=== MODE GRAPHIQUE ===\n";
 
+<<<<<<< HEAD
     // On demande le fichier d'entree
+=======
+    // On demande le fichier d'entrée
+>>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
     std::string fichierEntree;
     std::cout << "Entrez le fichier d'entree : ";
     std::cin >> fichierEntree;
 
+<<<<<<< HEAD
     // L'utilisateur choisit le nombre d'iterations
+=======
+    // L'utilisateur choisit le nombre d'itérations
+>>>>>>> 2ce32c5ed44646d8d1726e81cf78a24d92faa5f5
     int iterations = 0;
     std::cout << "Nombre d'iterations : ";
     std::cin >> iterations;
